@@ -1,0 +1,67 @@
+﻿@model IEnumerable<MechSoftExample.Models.Meeting>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Toplantı Listesi</h2>
+
+<p>
+    @Html.ActionLink("Yeni Toplantı Oluştur", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MeetingTopic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeetingDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeetingStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MeetingEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Participant)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MeetingTopic)
+            </td>
+            <td>
+                @{string date = item.MeetingDate.ToShortDateString();}
+                @Html.DisplayFor(modelItem => date)
+            </td>
+            <td>
+                @{ string startTime = item.MeetingStartTime.ToString(@"hh\:mm");}
+                @Html.DisplayFor(modelItem => startTime)
+            </td>
+            <td>
+                @{ string endTime = item.MeetingEndTime.ToString(@"hh\:mm");}
+                @Html.DisplayFor(modelItem => endTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participant)
+            </td>
+            <td>
+                @Html.ActionLink("Güncelle", "Edit", new { id = item.MeetingID }, new {@class="btn btn btn-success"}) |
+                @Html.ActionLink("Detaylar", "Details", new { id = item.MeetingID },new { @class = "btn btn btn-info" }) |
+                @Html.ActionLink("Sil", "Delete", new { id = item.MeetingID }, new { @class = "btn btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script src="~/Scripts/bootstrap.js"></script>
+<script src="~/Scripts/Site.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")

@@ -1,0 +1,60 @@
+﻿@model MechSoftExample.Models.Meeting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Toplantı Detayları</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingTopic)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeetingTopic)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingDate)
+        </dt>
+
+        <dd>
+            @{string tarih = Model.MeetingDate.ToShortDateString();}
+                @Html.DisplayFor(modelItem => tarih)
+            </dd>
+
+        <dt>            
+            @Html.DisplayNameFor(model => model.MeetingStartTime)
+        </dt>
+
+        <dd>
+            @{ string startTime = Model.MeetingStartTime.ToString(@"hh\:mm");}
+            @Html.DisplayFor(model => startTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeetingEndTime)
+        </dt>
+
+        <dd>
+            @{ string endTime = Model.MeetingEndTime.ToString(@"hh\:mm");}
+            @Html.DisplayFor(model => endTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Participant)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Participant)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Güncelle", "Edit", new { id = Model.MeetingID }) |
+    @Html.ActionLink("Toplantı Listesine Git", "Index")
+</p>
